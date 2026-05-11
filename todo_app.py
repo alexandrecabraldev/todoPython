@@ -6,7 +6,7 @@ DATA_FILE = "todos.json"
 
 class Todo:
     
-    def init(self, id: int, titulo: str, descricao: str = "") -> None:
+    def __init__(self, id: int, titulo: str, descricao: str = "") -> None:
         self.id = id
         self.titulo = titulo
         self.descricao = descricao
