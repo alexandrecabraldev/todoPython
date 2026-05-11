@@ -1,6 +1,6 @@
-# Simple TODO App (Basic)
+# TODO App
 
-Bem simples: cadastro (add) e remoção (delete) de cards via terminal.
+Todo App: cadastro (add) e remoção (delete) de cards via terminal.
 
 Como usar
 - Requisitos: Python 3.7+
@@ -14,4 +14,4 @@ Estrutura mínima
 - `todo_app.py` — código principal com classes `Todo` e `TodoManager`.
 
 Observações
-- Projeto intencionalmente simples para a primeira entrega.
+- Projeto para a primeira entrega.
