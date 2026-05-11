@@ -12,7 +12,7 @@ class Todo:
         self.descricao = descricao
 
     def to_dict(self) -> Dict[str, Any]:
-        return {"id": self.id, "titulo": self.titulo, "descricao": self.descricao}
+        return {"Id": self.id, "Título": self.titulo, "Descrição": self.descricao}
     
 class TodoManager:
 
