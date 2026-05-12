@@ -5,7 +5,6 @@ import json
 DATA_FILE = "todos.json"
 
 class Todo:
-    
     def __init__(self, id: int, titulo: str, descricao: str = "") -> None:
         self.id = id
         self.titulo = titulo
@@ -13,9 +12,8 @@ class Todo:
 
     def to_dict(self) -> Dict[str, Any]:
         return {"Id": self.id, "Título": self.titulo, "Descrição": self.descricao}
-    
-class TodoManager:
 
+class TodoManager:
     def __init__(self, path: str = DATA_FILE) -> None:
         self.path = path
         self.todos: List[Todo] = []
@@ -38,7 +36,6 @@ class TodoManager:
         return self.todos
 
     def add_card(self, title: str, description: str = "") -> Todo:
-
         title = title.strip()
         if not title:
             raise ValueError("O Título não pode ser vazio")
@@ -55,3 +52,46 @@ class TodoManager:
                 self._save()
                 return
         raise ValueError(f"Não existe card com esse id:{id}")
+
+def main() -> None:
+    mgr = TodoManager()
+    print("TODO app — add e delete cards")
+    while True:
+        print("\nComandos: list | add | delete | exit")
+        cmd = input("> ").strip().lower()
+        if cmd in ("exit", "quit"):
+            break
+        if cmd == "list":
+            todos = mgr.list_cards()
+            if not todos:
+                print("Sem cards.")
+            else:
+                for t in todos:
+                    print(f"{t.id}: {t.titulo} — {t.descricao}")
+            continue
+        if cmd == "add":
+            try:
+                titulo = input("Titulo: ").strip()
+                descricao = input("Descrição (opicional): ").strip()
+                todo = mgr.add_card(titulo, descricao)
+                print(f"Card Adicionado: {todo.id}")
+            except ValueError as e:
+                print("Erro:", e)
+            continue
+        if cmd == "delete":
+            try:
+                raw = input("Delete o card (id): ").strip()
+                if not raw.isdigit():
+                    print("Id inválido.")
+                    continue
+                idv = int(raw)
+                mgr.delete_card(idv)
+                print("Card deletado.")
+            except ValueError as e:
+                print("Erro:", e)
+            continue
+        print("Comando desconhecido.")
+
+
+if __name__ == "__main__":
+    main()
